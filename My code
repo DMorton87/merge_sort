@@ -1,0 +1,27 @@
+def merge_sort(nums):
+    if len(nums) <= 1:
+        return nums
+    half = len(nums)//2
+    nums_one = nums[half:]
+    nums_two = nums[:half]
+    nums_one_sorted = merge_sort(nums_one)
+    nums_two_sorted = merge_sort(nums_two)
+    return merge(nums_one_sorted, nums_two_sorted)
+
+
+def merge(first, second):
+    k = []
+    i = 0
+    j = 0
+    while i < len(first) and j < len(second):
+        if (first[i] < second[j]):
+            k.append(first[i])
+            i += 1
+        else:
+            k.append(second[j])
+            j += 1
+
+    k += first[i:]
+    k += second[j:]
+    return k
+        
